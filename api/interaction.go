@@ -11,7 +11,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func Handler(w http.ResponseWriter, r *http.Request) {
+func HandleInteraction(w http.ResponseWriter, r *http.Request) {
 	botToken, err := env.BotToken()
 	if err != nil {
 		writeErr(w, 500, err)
