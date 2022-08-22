@@ -1,8 +1,6 @@
 package handler
 
 import (
-	"encoding/json"
-	"log"
 	"net/http"
 
 	"github.com/diamondburned/acmregister/acmregister/bot"
@@ -40,22 +38,4 @@ func HandleInteraction(w http.ResponseWriter, r *http.Request) {
 	}
 	srv.ErrorFunc = writeErr
 	srv.ServeHTTP(w, r)
-}
-
-func writeErr(w http.ResponseWriter, _ *http.Request, code int, err error) {
-	var errBody struct {
-		Error string `json:"error"`
-	}
-
-	if err != nil {
-		errBody.Error = err.Error()
-		log.Println("request error:", err)
-	} else {
-		errBody.Error = http.StatusText(code)
-		log.Println("request responded with status", code)
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(code)
-	json.NewEncoder(w).Encode(errBody)
 }
