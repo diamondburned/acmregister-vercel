@@ -6,26 +6,29 @@ import (
 
 	"github.com/diamondburned/acmregister/acmregister/bot"
 	"github.com/diamondburned/acmregister/acmregister/env"
+	"github.com/diamondburned/acmregister/acmregister/logger"
 	"github.com/diamondburned/arikawa/v3/api/webhook"
 	"github.com/diamondburned/arikawa/v3/state"
 	"github.com/pkg/errors"
 )
 
 func HandleInteraction(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+
 	botToken, err := env.BotToken()
 	if err != nil {
 		writeErr(w, 500, err)
 		return
 	}
 
-	opts, err := env.BotOpts(r.Context())
+	opts, err := env.BotOpts(logger.Silent(ctx))
 	if err != nil {
 		writeErr(w, 500, err)
 		return
 	}
 	defer opts.Store.Close()
 
-	s := state.NewAPIOnlyState(botToken, nil)
+	s := state.NewAPIOnlyState(botToken, nil).WithContext(ctx)
 	h := bot.NewHandler(s, opts)
 	serverVars := env.InteractionServer()
 
