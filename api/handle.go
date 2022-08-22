@@ -1,4 +1,4 @@
-package api
+package handler
 
 import (
 	"encoding/json"
@@ -11,7 +11,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func Handle(w http.ResponseWriter, r *http.Request) {
+func Handler(w http.ResponseWriter, r *http.Request) {
 	botToken, err := env.BotToken()
 	if err != nil {
 		writeErr(w, 500, err)
