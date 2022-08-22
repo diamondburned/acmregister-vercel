@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/diamondburned/acmregister/acmregister/bot"
@@ -17,13 +18,13 @@ func HandleInteraction(w http.ResponseWriter, r *http.Request) {
 
 	botToken, err := env.BotToken()
 	if err != nil {
-		writeErr(w, 500, err)
+		writeErr(w, r, 500, err)
 		return
 	}
 
 	opts, err := env.BotOpts(logger.Silent(ctx))
 	if err != nil {
-		writeErr(w, 500, err)
+		writeErr(w, r, 500, err)
 		return
 	}
 	defer opts.Store.Close()
@@ -34,22 +35,24 @@ func HandleInteraction(w http.ResponseWriter, r *http.Request) {
 
 	srv, err := webhook.NewInteractionServer(serverVars.PubKey, h)
 	if err != nil {
-		writeErr(w, 500, errors.Wrap(err, "cannot create interaction server"))
+		writeErr(w, r, 500, errors.Wrap(err, "cannot create interaction server"))
 		return
 	}
-
+	srv.ErrorFunc = writeErr
 	srv.ServeHTTP(w, r)
 }
 
-func writeErr(w http.ResponseWriter, code int, err error) {
+func writeErr(w http.ResponseWriter, _ *http.Request, code int, err error) {
 	var errBody struct {
 		Error string `json:"error"`
 	}
 
 	if err != nil {
 		errBody.Error = err.Error()
+		log.Println("request error:", err)
 	} else {
 		errBody.Error = http.StatusText(code)
+		log.Println("request responded with status", code)
 	}
 
 	w.Header().Set("Content-Type", "application/json")
