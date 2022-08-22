@@ -3,12 +3,15 @@ module github.com/diamondburned/acmregister-vercel
 go 1.18
 
 require (
+	github.com/diamondburned/acmregister v0.0.0-20220822100103-03b989de6730
+	github.com/diamondburned/arikawa/v3 v3.0.1-0.20220822091854-f00054bddf49
+	github.com/pkg/errors v0.9.1
+)
+
+require (
 	github.com/PuerkitoBio/goquery v1.8.0 // indirect
-	github.com/Shopify/gomail v0.0.0-20220729171026-0784ece65e69 // indirect
 	github.com/andybalholm/cascadia v1.3.1 // indirect
-	github.com/diamondburned/acmregister v0.0.0-20220822093633-c2f68af689ca // indirect
-	github.com/diamondburned/arikawa/v3 v3.0.1-0.20220822091854-f00054bddf49 // indirect
-	github.com/diamondburned/listener v0.0.0-20220315064222-63f8ebce5f60 // indirect
+	github.com/diamondburned/gomail v0.0.0-20220822095806-d4028858cfb4 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/schema v1.2.0 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
@@ -17,7 +20,6 @@ require (
 	github.com/jackc/pgx/v5 v5.0.0-beta.2 // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20200410134404-eec4a21b6bb0 // indirect
 	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
 	golang.org/x/mod v0.3.0 // indirect
