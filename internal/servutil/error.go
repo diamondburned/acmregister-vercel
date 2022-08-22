@@ -1,4 +1,4 @@
-package handler
+package servutil
 
 import (
 	"encoding/json"
@@ -6,7 +6,8 @@ import (
 	"net/http"
 )
 
-func writeErr(w http.ResponseWriter, _ *http.Request, code int, err error) {
+// WriteErr writes the error as JSON.
+func WriteErr(w http.ResponseWriter, _ *http.Request, code int, err error) {
 	var errBody struct {
 		Error string `json:"error"`
 	}

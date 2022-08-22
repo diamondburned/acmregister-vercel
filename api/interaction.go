@@ -3,6 +3,7 @@ package handler
 import (
 	"net/http"
 
+	"github.com/diamondburned/acmregister-vercel/internal/servutil"
 	"github.com/diamondburned/acmregister/acmregister/bot"
 	"github.com/diamondburned/acmregister/acmregister/env"
 	"github.com/diamondburned/acmregister/acmregister/logger"
@@ -16,13 +17,13 @@ func HandleInteraction(w http.ResponseWriter, r *http.Request) {
 
 	botToken, err := env.BotToken()
 	if err != nil {
-		writeErr(w, r, 500, err)
+		servutil.WriteErr(w, r, 500, err)
 		return
 	}
 
 	opts, err := env.BotOpts(logger.Silent(ctx))
 	if err != nil {
-		writeErr(w, r, 500, err)
+		servutil.WriteErr(w, r, 500, err)
 		return
 	}
 	defer opts.Store.Close()
@@ -33,9 +34,9 @@ func HandleInteraction(w http.ResponseWriter, r *http.Request) {
 
 	srv, err := webhook.NewInteractionServer(serverVars.PubKey, h)
 	if err != nil {
-		writeErr(w, r, 500, errors.Wrap(err, "cannot create interaction server"))
+		servutil.WriteErr(w, r, 500, errors.Wrap(err, "cannot create interaction server"))
 		return
 	}
-	srv.ErrorFunc = writeErr
+	srv.ErrorFunc = servutil.WriteErr
 	srv.ServeHTTP(w, r)
 }
