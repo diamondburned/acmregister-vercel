@@ -4,8 +4,8 @@ github.com/andybalholm/cascadia v1.3.1 h1:nhxRkql1kdYCc8Snf7D5/D3spOX+dBgjA6u8x0
 github.com/andybalholm/cascadia v1.3.1/go.mod h1:R4bJ1UQfqADjvDa4P6HZHLh/3OxWWEqc0Sk8XGwHqvA=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
-github.com/diamondburned/acmregister v0.0.0-20220829015123-8cb4e49fd333 h1:zdk3ROS3FYDMf8nxvVlbgwS8kki8tnl5wGrxfIjWtM0=
-github.com/diamondburned/acmregister v0.0.0-20220829015123-8cb4e49fd333/go.mod h1:3sF0IdyWw5VkGp5kv9bWTQtknTnjhlvhVh1a6Jui+C4=
+github.com/diamondburned/acmregister v0.0.0-20220829020111-4da4e07d4d65 h1:aam2UayJ8hwmkpXqKy0CuzwAh7hSvGtzCLJvuHj3pBw=
+github.com/diamondburned/acmregister v0.0.0-20220829020111-4da4e07d4d65/go.mod h1:3sF0IdyWw5VkGp5kv9bWTQtknTnjhlvhVh1a6Jui+C4=
 github.com/diamondburned/arikawa/v3 v3.0.1-0.20220822214349-9e9f90a65248 h1:6EmgeElVyYlDFnwB9VZm2pBH2lsMfUz108sUn2aU7PA=
 github.com/diamondburned/arikawa/v3 v3.0.1-0.20220822214349-9e9f90a65248/go.mod h1:5jBSNnp82Z/EhsKa6Wk9FsOqSxfVkNZDTDBPOj47LpY=
 github.com/diamondburned/gomail v0.0.0-20220829012313-d59bf3199857 h1:cKYkWclvTvc/p80IPDDkPG78axAbGytgfDbDh6wW6oE=
