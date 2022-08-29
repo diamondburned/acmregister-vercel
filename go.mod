@@ -3,7 +3,7 @@ module github.com/diamondburned/acmregister-vercel
 go 1.18
 
 require (
-	github.com/diamondburned/acmregister v0.0.0-20220829010324-49255b53cc77
+	github.com/diamondburned/acmregister v0.0.0-20220829012403-f3f8440c5d2e
 	github.com/diamondburned/arikawa/v3 v3.0.1-0.20220822214349-9e9f90a65248
 	github.com/pkg/errors v0.9.1
 )
@@ -11,8 +11,9 @@ require (
 require (
 	github.com/PuerkitoBio/goquery v1.8.0 // indirect
 	github.com/andybalholm/cascadia v1.3.1 // indirect
-	github.com/diamondburned/gomail v0.0.0-20220822095806-d4028858cfb4 // indirect
-	github.com/diamondburned/listener v0.0.0-20220315064222-63f8ebce5f60 // indirect
+	github.com/diamondburned/gomail v0.0.0-20220829012313-d59bf3199857 // indirect
+	github.com/emersion/go-sasl v0.0.0-20200509203442-7bfe0ed36a21 // indirect
+	github.com/emersion/go-smtp v0.15.0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/schema v1.2.0 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
