@@ -6,7 +6,6 @@ import (
 	"github.com/diamondburned/acmregister-vercel/internal/servutil"
 	"github.com/diamondburned/acmregister/acmregister/bot"
 	"github.com/diamondburned/acmregister/acmregister/env"
-	"github.com/diamondburned/acmregister/acmregister/logger"
 	"github.com/diamondburned/arikawa/v3/api/webhook"
 	"github.com/diamondburned/arikawa/v3/state"
 	"github.com/pkg/errors"
@@ -21,7 +20,7 @@ func HandleInteraction(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	opts, err := env.BotOpts(logger.Silent(ctx))
+	opts, err := env.BotOpts(ctx)
 	if err != nil {
 		servutil.WriteErr(w, r, 500, err)
 		return
