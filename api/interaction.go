@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"context"
+	"log"
 	"net/http"
 
 	"github.com/diamondburned/acmregister-vercel/internal/servutil"
@@ -11,31 +13,33 @@ import (
 	"github.com/pkg/errors"
 )
 
-func HandleInteraction(w http.ResponseWriter, r *http.Request) {
-	ctx := r.Context()
-
+var interactionHandler = func() http.Handler {
 	botToken, err := env.BotToken()
 	if err != nil {
-		servutil.WriteErr(w, r, 500, err)
-		return
+		log.Fatalln("cannot get bot token:", err)
 	}
 
-	opts, err := env.BotOpts(ctx)
+	opts, err := env.BotOpts(context.Background())
 	if err != nil {
-		servutil.WriteErr(w, r, 500, err)
-		return
+		log.Fatalln("cannot get bot opts:", err)
 	}
-	defer opts.Store.Close()
 
-	s := state.NewAPIOnlyState(botToken, nil).WithContext(ctx)
-	h := bot.NewHandler(s, opts)
 	serverVars := env.InteractionServer()
 
-	srv, err := webhook.NewInteractionServer(serverVars.PubKey, h)
-	if err != nil {
-		servutil.WriteErr(w, r, 500, errors.Wrap(err, "cannot create interaction server"))
-		return
-	}
-	srv.ErrorFunc = servutil.WriteErr
-	srv.ServeHTTP(w, r)
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		s := state.NewAPIOnlyState(botToken, nil).WithContext(r.Context())
+		h := bot.NewHandler(s, opts)
+
+		srv, err := webhook.NewInteractionServer(serverVars.PubKey, h)
+		if err != nil {
+			servutil.WriteErr(w, r, 500, errors.Wrap(err, "cannot create interaction server"))
+			return
+		}
+		srv.ErrorFunc = servutil.WriteErr
+		srv.ServeHTTP(w, r)
+	})
+}()
+
+func HandleInteraction(w http.ResponseWriter, r *http.Request) {
+	interactionHandler.ServeHTTP(w, r)
 }
