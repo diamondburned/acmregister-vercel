@@ -1,0 +1,24 @@
+<!-- SUBJECT: Register for acmCSUF: Verify your Email -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+<style>
+	p { font-family: "Poppins", sans-serif; }
+</style>
+
+<p>Hello {{ .Name }},</p>
+
+<p>Below is the 4-digit PIN code to be used for verification:</p>
+
+<blockquote>
+	<b><code>{{ .PIN }}</code></b>
+</blockquote>
+
+<p>Please type (or copy) the code into the field within the replied message to finish your
+verification.</p>
+
+<p>If the message is not found, please try redoing the verification by clicking the Register
+button.</p>
+
+— The <b>acm<span style="color: #2c91c6;">CSUF</span></b> team

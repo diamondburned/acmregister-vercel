@@ -1,0 +1,8 @@
+{
+    "Prettier-SQL.expressionWidth": 80,
+    "Prettier-SQL.keywordCase": "upper",
+    "Prettier-SQL.SQLFlavourOverride": "sqlite",
+    "Prettier-SQL.tabulateAlias": true,
+    "Prettier-SQL.ignoreTabSettings": true,
+    "prettier.useTabs": true
+}

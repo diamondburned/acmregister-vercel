@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/diamondburned/acmregister-vercel/internal/servutil"
@@ -53,5 +54,7 @@ func HandleInteraction(w http.ResponseWriter, r *http.Request) {
 		h.Wait()
 		h.Close()
 		opts.Store.Close()
+
+		log.Println("finished executing goroutine")
 	}()
 }
