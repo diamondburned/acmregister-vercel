@@ -3,6 +3,7 @@ package bot
 import (
 	"context"
 	"fmt"
+	"log"
 	"sync"
 	"time"
 
@@ -154,6 +155,8 @@ func (h *Handler) HandleInteraction(ev *discord.InteractionEvent) *api.Interacti
 				logger := logger.FromContext(h.ctx)
 				logger.Println("cannot overwrite bot commands:", data)
 			}
+
+			log.Println("overridden comamnds")
 		}()
 		return &api.InteractionResponse{Type: api.PongInteraction}
 	default:

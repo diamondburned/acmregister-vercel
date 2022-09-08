@@ -2,6 +2,7 @@ package bot
 
 import (
 	"context"
+	"log"
 	"strings"
 	"time"
 
@@ -92,6 +93,8 @@ func (h *Handler) modalRegisterResponse(ev *discord.InteractionEvent, modal *dis
 				},
 			},
 		})
+
+		log.Println("followed up interactions")
 	}()
 
 	return deferResponse(discord.EphemeralMessage)

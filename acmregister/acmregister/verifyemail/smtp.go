@@ -111,6 +111,7 @@ func (v *SMTPVerifier) SendConfirmationEmail(ctx context.Context, member acmregi
 	if matches := mailSubjectRe.FindStringSubmatch(body.String()); matches != nil {
 		subject := matches[1]
 		msg.SetHeader("Subject", subject)
+		log.Println("added subject", subject)
 	}
 
 	log.Println("dialing SMTP")
