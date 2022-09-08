@@ -3,7 +3,7 @@ module github.com/diamondburned/acmregister-vercel
 go 1.18
 
 require (
-	github.com/diamondburned/acmregister v0.0.0-20220829030101-9cb9b56fdd33
+	github.com/diamondburned/acmregister v0.0.0-20220908000532-c72c9311d325
 	github.com/diamondburned/arikawa/v3 v3.0.1-0.20220822214349-9e9f90a65248
 	github.com/pkg/errors v0.9.1
 )
