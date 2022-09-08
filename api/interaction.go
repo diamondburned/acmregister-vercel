@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/diamondburned/acmregister-vercel/internal/servutil"
@@ -41,20 +40,16 @@ func HandleInteraction(w http.ResponseWriter, r *http.Request) {
 	srv.ErrorFunc = servutil.WriteErr
 	srv.ServeHTTP(w, r)
 
-	go func() {
-		// Wait for the interaction to die off before closing. We can't defer
-		// close any of this, because we have to spawn a goroutine for a
-		// follow-up response, so we want to wait until that's done before we
-		// clean up.
-		//
-		// Vercel, of course, behaves in a different way than you would a main()
-		// program, in that any dangling goroutines will actually prevent the
-		// whole serverless function, so this method works. If not for that,
-		// then I don't really know what else to do.
-		h.Wait()
-		h.Close()
-		opts.Store.Close()
-
-		log.Println("finished executing goroutine")
-	}()
+	// Wait for the interaction to die off before closing. We can't defer
+	// close any of this, because we have to spawn a goroutine for a
+	// follow-up response, so we want to wait until that's done before we
+	// clean up.
+	//
+	// Vercel, of course, behaves in a different way than you would a main()
+	// program, in that any dangling goroutines will actually prevent the
+	// whole serverless function, so this method works. If not for that,
+	// then I don't really know what else to do.
+	h.Wait()
+	h.Close()
+	opts.Store.Close()
 }
